@@ -1,0 +1,48 @@
+﻿@using WebSiteBanSach.Models;
+@model List<Sach>
+
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+@section NoiDungBenPhai{
+    <div>
+    Ai cũng biết, sách là kết tinh tri thức của nhân loại, là người thầy vĩ đại của mỗi con người.  
+    Toàn bộ tinh hoa tri thức của loài người đều nằm trong sách và “đọc là cách học tốt nhất”.
+    Và trong những xã hội mà nền giáo dục bị khủng hoảng trầm trọng thì vai trò của sách lại càng trở nên quan trọng. 
+    Bởi chính trong những xã hội mà “phần lớn trường không ra trường, thầy không ra thầy” ấy, chính những cuốn sách hay, 
+    sách quý sẽ là vị tướng tiên phong trong công cuộc khai minh xã hội.
+
+    Để sách có thể thực hiện được vai trò “tướng tiên phong” ấy, cần phải có một một không gian để chọn lọc, lưu giữ và lan tỏa tri thức. 
+    Đó đồng thời cũng là không gian để gắn kết những bậc thức giả - những người đang định hình nền tri thức Việt Nam với n
+    hững người làm sách, và quan trọng hơn, là với những người đọc bình thường nhất để chung tay hiện thực hóa công cuộc khai minh này. 
+    Dự án Sách Hay chính là không gian ấy, với sứ mệnh là:  “Góp phần nâng cao dân trí và khai minh xã hội thông qua các hoạt động đa dạng 
+    liên quan đến sách hay”
+    </div>}
+
+<div id="divBody">
+    @{int i = 0;}
+    @foreach (var item in Model)
+    {
+        i++;
+        <div id="SanPham">
+            <a href="@Url.Action("XemChiTiet", "Sach", new { @_MaSach = item.MaSach })">
+                <div id="AnhBia"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="300" height="350"></div>
+            </a>
+            <div id="Gia">
+                <span id="TieuDe">Tên sách: </span>
+                <span id="TenSach">@item.TenSach</span><br />
+                <span id="TieuDe">Đơn giá : </span>
+                <span id="Gia">@string.Format("{0:0,0}", @item.GiaBan) vnđ</span>
+            </div>
+            
+        </div>
+        if (i == 3)
+        {
+            i = 0;
+            <div style="clear:both"><br/></div>
+        }
+    }
+</div>
+
